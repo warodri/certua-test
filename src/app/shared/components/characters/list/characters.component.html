@@ -1,0 +1,45 @@
+
+<mat-table [dataSource]="dataSource" class="mat-elevation-z2" matSort>
+
+    <ng-container matColumnDef="name">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Name </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.name}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="birthday">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Birthday </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.birthday}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="occupation">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Occupation </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.occupation}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="status">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Status </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.status}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="nickname">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Nickname </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.nickname}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="getDetails">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> </mat-header-cell>
+        <mat-cell *matCellDef="let element"> 
+            <button mat-raised-button color="primary" (click)="getDetails(element)">
+                See Details
+            </button>   
+        </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+</mat-table>
+
+<mat-paginator
+  [pageSizeOptions]="[5, 10, 20]"
+  showFirstLastButtons
+></mat-paginator>

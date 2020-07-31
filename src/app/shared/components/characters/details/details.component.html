@@ -1,0 +1,42 @@
+<div class="container text-center">
+
+    <!--
+        Show this if character was not found
+    -->
+    <div *ngIf="notFound">
+        <h3>
+            Character not found
+        </h3>
+    </div>
+
+    <!--
+        Show character details
+    -->
+    <div *ngIf="character && !notFound" class="d-flex align-content-center justify-content-center w-100">
+        <mat-card class="example-card">
+            <mat-card-header>
+                <div class="text-center w-100">
+                    <mat-card-title>{{ character.name }}</mat-card-title>
+                    <mat-card-subtitle>{{ character.occupation }}</mat-card-subtitle>
+                </div>
+            </mat-card-header>
+            <img mat-card-image [attr.src]="character.img" [attr.alt]="'Photo of ' + character.name">
+            <mat-card-content>
+                <p>
+                    Status: {{ character.status }}
+                </p>
+                <p>
+                    Nickname: {{ character.nickname }}
+                </p>
+                <p>
+                    Birthday: {{ character.birthday }}
+                </p>
+            </mat-card-content>
+            <mat-card-actions>
+                <button mat-button>LIKE</button>
+                <button mat-button>SHARE</button>
+            </mat-card-actions>
+        </mat-card>
+    </div>
+
+</div>
