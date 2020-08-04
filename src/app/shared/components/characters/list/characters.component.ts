@@ -15,6 +15,8 @@ import { ErrorType } from 'src/app/shared/models/error-type';
 })
 export class CharactersComponent implements OnInit {
 
+    showSpinner = false;
+
     /**
      * Show errors for Internet calls
      */
@@ -68,6 +70,9 @@ export class CharactersComponent implements OnInit {
      * Get all records from server
      */
     getAllRecords() {
+
+        this.showSpinner = true;
+
         this.apiService.get().subscribe( (response: Array<Character>) => {
             // Show dates nicely
             this.setBirthdays(response);
@@ -94,11 +99,15 @@ export class CharactersComponent implements OnInit {
             this.errorMessage = error.message;
             this.errorType = ErrorType.TYPE_ERROR;
 
+            this.showSpinner = false;
+
         }, () => {
             /**
              * This will execute if no errors present
              */
             console.log('Process completed');
+
+            this.showSpinner = false;
         });
     }
 

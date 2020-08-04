@@ -7,7 +7,7 @@
                     Search by name, status or nickname...
                 </mat-label>
                 <input matInput placeholder="Search by name, status or nickname..." [formControl]="searchControl"
-                    (input)="keyPressed($event)" />
+                    (input)="messangerEmitter.next($event.target.value)" />
             </mat-form-field>
         </mat-card-content>
     </mat-card>

@@ -1,4 +1,3 @@
-
 <app-messages [type]="errorType" [message]="errorMessage"></app-messages>
 
 <mat-table [dataSource]="dataSource" class="mat-elevation-z2" matSort>
@@ -45,3 +44,5 @@
   [pageSizeOptions]="[5, 10, 20]"
   showFirstLastButtons
 ></mat-paginator>
+
+<app-spinner *ngIf="showSpinner"></app-spinner>

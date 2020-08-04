@@ -13,6 +13,8 @@ export class SearchComponent implements OnInit {
      */
     searchControl: FormControl;
 
+    messangerEmitter;
+
     constructor(
         private fb: FormBuilder,
         /**
@@ -23,22 +25,9 @@ export class SearchComponent implements OnInit {
     ) { }
 
     ngOnInit() {
+        this.messangerEmitter = this.autocompleteService.messageEmitter;
         this.searchControl = new FormControl('', Validators.required);
     }
 
-    /**
-     * Gets each key pressed and performs filtering
-     */
-    keyPressed(event: any) {
-        const text = event.target.value;
-        this.filterResults(text);
-    }
-
-    /**
-     * Sends a message to filter results
-     */
-    filterResults(text: string) {
-        this.autocompleteService.messageEmitter.next(text);
-    }
 
 }
