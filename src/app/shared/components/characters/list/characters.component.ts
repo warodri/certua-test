@@ -6,6 +6,7 @@ import { Character } from '../../../models/character';
 import { ApiService } from '../../../services/api.service';
 import { AutocompleteService } from 'src/app/shared/services/autocomplete.service';
 import { CommonFunctions } from 'src/app/shared/services/common.functions.service';
+import { ErrorType } from 'src/app/shared/models/error-type';
 
 @Component({
   selector: 'app-characters',
@@ -13,6 +14,12 @@ import { CommonFunctions } from 'src/app/shared/services/common.functions.servic
   styleUrls: ['./characters.component.scss'],
 })
 export class CharactersComponent implements OnInit {
+
+    /**
+     * Show errors for Internet calls
+     */
+    errorType: ErrorType;
+    errorMessage: string;
 
     /**
      * Angular Material Table columns
@@ -79,6 +86,19 @@ export class CharactersComponent implements OnInit {
 
             // Start listening for filters coming from SearchComponent
             this.subscribeToAutocomplete();
+
+        }, (error) => {
+            /**
+             * Display errors
+             */
+            this.errorMessage = error.message;
+            this.errorType = ErrorType.TYPE_ERROR;
+
+        }, () => {
+            /**
+             * This will execute if no errors present
+             */
+            console.log('Process completed');
         });
     }
 

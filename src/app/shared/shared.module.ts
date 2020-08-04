@@ -9,11 +9,13 @@ import { CommonModule } from '@angular/common';
 
 import { CharactersComponent } from './components/characters/list/characters.component';
 import { CharactersDetailsComponent } from './components/characters/details/details.component';
+import { ErrorComponent } from './components/error-messages/error.component';
 
 const UX_COMPONENTS: any[] = [
     UxHeaderComponent,
     CharactersComponent,
-    CharactersDetailsComponent
+    CharactersDetailsComponent,
+    ErrorComponent
 ];
 
 const UX_MODULES: any[] = [

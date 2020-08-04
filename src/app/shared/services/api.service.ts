@@ -1,9 +1,8 @@
 import { Injectable } from '@angular/core';
 import { environment } from '../../../environments/environment';
-import { Observable } from 'rxjs';
-import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
-import { catchError, tap, map, share, shareReplay } from 'rxjs/operators';
-import { of } from 'rxjs';
+import { Observable, throwError } from 'rxjs';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { shareReplay } from 'rxjs/operators';
 import { Character } from '../models/character';
 
 /**
@@ -51,15 +50,24 @@ export class ApiService {
      * Get records from server and then cache results
      */
     get(): Observable<Character[]> {
+
         // Verify cache time
         this.verifyMaxAge();
 
         if (!this.record$) {
-            // We go to the server here
+
+            /**
+             * We go to the server here.
+             *
+             * After this, the global-http-interceptor.service.ts
+             * will analyze this.
+             */
             this.record$ = this.http.get<Character[]>(
                 environment.api_endpoint_root + this.getUri(),
                 httpOptions)
-            .pipe(shareReplay(1));
+            .pipe(
+                shareReplay(1)
+            );
         }
 
         // Set last time this api was called

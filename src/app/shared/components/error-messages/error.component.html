@@ -1,0 +1,9 @@
+
+<div class="alert" *ngIf="message && type"
+    [class.alert-success]="type == typeSuccess" 
+    [class.alert-danger]="type == typeError" 
+    [class.alert-info]="type == typeInfo" 
+    [class.alert-warning]="type == typeWarning" 
+    role="alert">
+    {{ message }}
+</div>
